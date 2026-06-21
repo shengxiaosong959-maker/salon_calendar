@@ -1,0 +1,340 @@
+/* ===========================
+   ReservationModal.css
+   既存スタイル + 新規予約フォーム
+   =========================== */
+
+/* --- モーダル オーバーレイ --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* --- モーダル コンテンツ --- */
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 2px solid #f8c8dc;
+}
+
+/* --- モーダル ヘッダー --- */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0e0f0;
+}
+
+.modal-header h2 {
+  font-size: 1.2rem;
+  color: #d4739a;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #999;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.close-button:hover {
+  background: #f0f0f0;
+}
+
+/* --- ベッド セクション --- */
+.bed-section {
+  margin-bottom: 20px;
+}
+
+.bed-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #d4739a;
+  margin-bottom: 8px;
+}
+
+/* --- タイムライン --- */
+.timeline {
+  position: relative;
+  border: 1px dashed #f8c8dc;
+  border-radius: 8px;
+  padding: 12px 10px;
+  min-height: 60px;
+}
+
+.time-marks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.time-mark {
+  text-align: center;
+}
+
+.timeline-items {
+  position: relative;
+  height: 36px;
+}
+
+.timeline-item {
+  position: absolute;
+  top: 0;
+  height: 36px;
+  /* background と box-shadow は JS の style 属性で制御 */
+  color: white;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.timeline-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(255, 111, 163, 0.5);
+}
+
+.no-reservation {
+  text-align: center;
+  color: #ccc;
+  font-size: 0.85rem;
+  padding: 10px 0;
+}
+
+/* --- 新規追加ボタン --- */
+.add-reservation-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 16px 0;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.16s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.16s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.add-reservation-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.add-reservation-button:active {
+  transform: scale(0.97);
+}
+
+/* --- 新規予約フォーム --- */
+.reservation-form {
+  margin: 16px 0;
+  padding: 20px;
+  background: #fdf8ff;
+  border: 1px solid #f0e0f0;
+  border-radius: 12px;
+}
+
+.form-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #7c3aed;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e9d5ff;
+}
+
+/* --- フォーム グループ --- */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group textarea,
+.form-group .form-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group .form-select:focus {
+  outline: none;
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* --- 横並びフォーム（開始時間・終了時間） --- */
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-group.half {
+  flex: 1;
+}
+
+/* --- フォーム ボタン --- */
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cancel-button {
+  flex: 1;
+  padding: 12px;
+  background: #f3f4f6;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancel-button:hover {
+  background: #e5e7eb;
+}
+
+.submit-button {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.16s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.16s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.submit-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
+}
+
+.submit-button:active {
+  transform: scale(0.97);
+}
+
+/* --- 閉じるボタン --- */
+.close-modal-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #f8c8dc, #f9a8d4);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.16s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.close-modal-button:hover {
+  transform: translateY(-1px);
+}
+
+.close-modal-button:active {
+  transform: scale(0.97);
+}
+
+/* --- メッセージ --- */
+.form-error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.form-success {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #16a34a;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  margin: 8px 0;
+  text-align: center;
+}
+
+/* --- レスポンシブ対応 --- */
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-group.half {
+    flex: none;
+  }
+
+  .time-marks {
+    font-size: 0.6rem;
+  }
+}
+
+

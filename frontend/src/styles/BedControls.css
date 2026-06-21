@@ -1,0 +1,108 @@
+/* ===========================
+   BedControls.css
+   ベッド数 ＋/－ コントロール
+   =========================== */
+
+.bed-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #fdf8ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.bed-controls--loading,
+.bed-controls--error {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.bed-controls--error {
+  color: #dc2626;
+}
+
+.bed-controls__label {
+  font-weight: 600;
+  color: #555;
+}
+
+.bed-controls__btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.16s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.16s cubic-bezier(0.23, 1, 0.32, 1),
+              background 0.2s;
+}
+
+.bed-controls__btn:active {
+  transform: scale(0.93);
+}
+
+.bed-controls__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ー ボタン */
+.bed-controls__btn--minus {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.bed-controls__btn--minus:not(:disabled):hover {
+  background: #fecaca;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+}
+
+/* ＋ ボタン */
+.bed-controls__btn--plus {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.bed-controls__btn--plus:not(:disabled):hover {
+  background: #a7f3d0;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+}
+
+/* 現在のベッド数 */
+.bed-controls__count {
+  min-width: 24px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+/* 有効なベッド名 */
+.bed-controls__beds {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* レスポンシブ */
+@media (max-width: 480px) {
+  .bed-controls {
+    padding: 6px 12px;
+    gap: 6px;
+    font-size: 0.85rem;
+  }
+
+  .bed-controls__btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+}

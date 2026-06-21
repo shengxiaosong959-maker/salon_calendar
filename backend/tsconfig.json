@@ -1,0 +1,24 @@
+{
+  "ts-node": {
+    "esm": true,
+    "experimentalEsm": true
+  },
+  "compilerOptions": {
+    "target": "ESNext",         // ES2020より新しいESNextを推奨
+    "module": "NodeNext",       // ここをES2020からNodeNextに変更
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

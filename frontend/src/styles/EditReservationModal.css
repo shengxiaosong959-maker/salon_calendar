@@ -1,0 +1,262 @@
+/* ===================================
+   EditReservationModal.css
+   予約編集専用ポップアップ
+   =================================== */
+
+/* オーバーレイ（ReservationModal の上に重なる） */
+.edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100; /* ReservationModal（z-index: 1000 想定）より上 */
+  padding: 16px;
+  animation: editOverlayIn 0.18s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes editOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* モーダル本体 */
+.edit-modal-content {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  animation: editModalIn 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes editModalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ヘッダー */
+.edit-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0e6ff;
+  background: linear-gradient(135deg, #fdf4ff 0%, #f5f0ff 100%);
+  border-radius: 16px 16px 0 0;
+  gap: 8px;
+}
+
+.edit-modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5b21b6;
+  margin: 0;
+  flex: 1;
+}
+
+.edit-modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ヘッダーボタン共通 */
+.edit-modal-btn {
+  padding: 7px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.14s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.14s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.edit-modal-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.edit-modal-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* 変更ボタン（紫） */
+.edit-modal-btn--save {
+  background: #7c3aed;
+  color: #fff;
+  min-width: 64px;
+}
+
+.edit-modal-btn--save:not(:disabled):hover {
+  background: #6d28d9;
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.35);
+}
+
+/* 削除ボタン（赤） */
+.edit-modal-btn--delete {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.edit-modal-btn--delete:not(:disabled):hover {
+  background: #fecaca;
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.2);
+}
+
+/* 閉じるボタン（グレー） */
+.edit-modal-btn--close {
+  background: transparent;
+  color: #999;
+  padding: 7px 10px;
+  font-size: 1rem;
+}
+
+.edit-modal-btn--close:not(:disabled):hover {
+  color: #555;
+  background: #f5f5f5;
+}
+
+/* エラーメッセージ */
+.edit-modal-error {
+  margin: 12px 20px 0;
+  padding: 10px 14px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #dc2626;
+  font-size: 0.85rem;
+}
+
+/* 削除確認バナー */
+.edit-modal-confirm {
+  margin: 12px 20px 0;
+  padding: 14px 16px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+}
+
+.edit-modal-confirm p {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  color: #92400e;
+  font-weight: 600;
+}
+
+.edit-modal-confirm-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* キャンセルボタン */
+.edit-modal-btn--cancel {
+  background: #f3f4f6;
+  color: #555;
+}
+
+.edit-modal-btn--cancel:not(:disabled):hover {
+  background: #e5e7eb;
+}
+
+/* 削除確定ボタン */
+.edit-modal-btn--delete-confirm {
+  background: #dc2626;
+  color: #fff;
+}
+
+.edit-modal-btn--delete-confirm:not(:disabled):hover {
+  background: #b91c1c;
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.3);
+}
+
+/* フォームエリア */
+.edit-modal-form {
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.edit-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.edit-form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.edit-form-group input[type="text"],
+.edit-form-group input[type="date"],
+.edit-form-group input[type="time"],
+.edit-form-group textarea,
+.edit-form-group .edit-form-select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #333;
+  background: #fafafa;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.edit-form-group input:focus,
+.edit-form-group textarea:focus,
+.edit-form-group .edit-form-select:focus {
+  outline: none;
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+  background: #fff;
+}
+
+.edit-form-group textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+/* 開始・終了時間を横並びに */
+.edit-form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.edit-form-group.half {
+  flex: 1;
+}
+
+/* レスポンシブ */
+@media (max-width: 480px) {
+  .edit-modal-content {
+    border-radius: 12px;
+    max-height: 95vh;
+  }
+
+  .edit-modal-header {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
+
+  .edit-modal-title {
+    font-size: 0.95rem;
+  }
+
+  .edit-modal-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .edit-modal-form {
+    padding: 12px 16px 16px;
+  }
+}
