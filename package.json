@@ -1,17 +1,14 @@
 {
-  "type": "module",
-  "name": "backend",
+  "name": "salon-calendar",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "backend/dist/index.js",
   "scripts": {
-    "dev": "tsx src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "migrate": "node migrate_auth.js"
+    "dev": "cd backend && npm run dev",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build && npm --prefix backend run build",
+    "start": "node backend/dist/index.js",
+    "migrate": "cd backend && node migrate_auth.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
@@ -20,8 +17,6 @@
     "express-rate-limit": "^7.5.0",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.13.3",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
     "uuid": "^14.0.0"
   },
   "devDependencies": {
@@ -30,6 +25,8 @@
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20.19.41",
-    "@types/pg": "^8.11.10"
+    "@types/pg": "^8.11.10",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   }
 }
