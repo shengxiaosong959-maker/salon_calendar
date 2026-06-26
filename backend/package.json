@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "tsc",
+    "build": "cd ../frontend && npm run build && cd ../backend && tsc",
     "start": "node dist/index.js",
     "migrate": "node migrate_auth.js"
   },
