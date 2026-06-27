@@ -18,7 +18,8 @@
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "types": ["node"]
+    "types": ["node"],
+    "lib": ["ESNext"]
   },
   "include": ["src"],
   "exclude": ["node_modules"]
