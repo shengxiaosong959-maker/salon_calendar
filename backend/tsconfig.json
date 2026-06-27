@@ -4,8 +4,8 @@
     "experimentalEsm": true
   },
   "compilerOptions": {
-    "target": "ESNext",         // ES2020より新しいESNextを推奨
-    "module": "NodeNext",       // ここをES2020からNodeNextに変更
+    "target": "ESNext",
+    "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -17,7 +17,8 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "types": ["node"]
   },
   "include": ["src"],
   "exclude": ["node_modules"]
