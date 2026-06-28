@@ -17,6 +17,8 @@ interface Reservation {
   memo?: string;
 }
 
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 export default function WeekCalendar() {
   const { bedSettings } = useBedSettings();     // ← コンポーネントの中に移動
   const activeBeds = bedSettings?.activeBeds ?? ['A', 'B'];
@@ -32,7 +34,7 @@ export default function WeekCalendar() {
   const fetchReservations = async () => {
   try {
       const token = localStorage.getItem('salon_auth_token');  // JWT を取得
-      const response = await fetch(`http://localhost:3000/api/reservations`, {
+      const response = await fetch(`${API_BASE}/api/reservations`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',

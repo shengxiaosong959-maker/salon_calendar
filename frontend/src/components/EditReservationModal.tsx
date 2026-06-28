@@ -22,7 +22,7 @@ interface EditReservationModalProps {
   onDeleted: () => void;  // 削除後にカレンダーを再取得
 }
 
-const API_BASE = 'http://localhost:3000';
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 // タイムスタンプ → "YYYY-MM-DD" 形式
 // PostgreSQL の BIGINT は文字列で返るため Number() で変換する

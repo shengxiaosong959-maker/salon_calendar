@@ -34,7 +34,7 @@ interface ReservationModalProps {
   onReservationAdded?: () => void;
 }
 
-const API_BASE = 'http://localhost:3000';
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 // color が未設定の場合のデフォルト色
 const DEFAULT_COLOR = '#A8D8EA';
