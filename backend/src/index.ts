@@ -299,8 +299,11 @@ app.post('/api/reservations', authenticate, requireStaff, async (req: AuthReques
   const startTs = new Date(`${date}T${startTime}:00`).getTime();
   const endTs = new Date(`${date}T${endTime}:00`).getTime();
   //デバック用
-  console.log(new Date(startTs));
-  console.log(startTs);
+  console.log("startTs", startTs);
+  console.log("startDate", new Date(startTs).toString());
+
+  console.log("endTs", endTs);
+  console.log("endDate", new Date(endTs).toString());
 
   if (isNaN(startTs) || isNaN(endTs) || startTs >= endTs) {
     return res.status(400).json({ error: '日時が正しくありません' });
