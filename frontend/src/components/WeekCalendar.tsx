@@ -45,6 +45,7 @@ export default function WeekCalendar() {
         throw new Error("予約データの取得に失敗しました");
       }
       const data = await response.json();
+      console.log("取得した予約データ", data);
       setReservations(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : "不明なエラーが発生しました");
