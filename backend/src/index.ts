@@ -370,8 +370,25 @@ app.put('/api/reservations/:id', authenticate, requireStaff, async (req: AuthReq
       return res.status(404).json({ error: '予約が見つかりません' });
     }
 
-    const startTs = new Date(`${date}T${startTime}:00`).getTime();
-    const endTs = new Date(`${date}T${endTime}:00`).getTime();
+    const [year, month, day] = date.split('-').map(Number);
+    const [startHour, startMinute] = startTime.split(':').map(Number);
+    const [endHour, endMinute] = endTime.split(':').map(Number);
+
+    const startTs = new Date(
+      year,
+      month - 1,
+      day,
+      startHour,
+      startMinute
+    ).getTime();
+
+    const endTs = new Date(
+      year,
+      month - 1,
+      day,
+      endHour,
+      endMinute
+    ).getTime();
 
     if (isNaN(startTs) || isNaN(endTs) || startTs >= endTs) {
       return res.status(400).json({ error: '日時が正しくありません' });
