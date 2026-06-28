@@ -109,7 +109,7 @@ export default function WeekCalendar() {
           onClick={() => setWeekOffset(weekOffset - 1)}
           className="nav-button"
         >
-          &lt; 先週
+         {"< 先週"}
         </button>
         <span className="date-range">
           {format(displayWeekStart, "M月d日", { locale: ja })} ～{" "}
@@ -119,7 +119,7 @@ export default function WeekCalendar() {
           onClick={() => setWeekOffset(weekOffset + 1)}
           className="nav-button"
         >
-          来週 &lt; 
+           {"来週 >"}
         </button>
       </div>
 
