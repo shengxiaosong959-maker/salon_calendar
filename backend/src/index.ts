@@ -21,12 +21,14 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 // CORS（開発時のみフロントエンド開発サーバーを許可）
 // 本番はバックエンドが静的ファイルを配信するため不要
 // ─────────────────────────────────────────────
-if (!IS_PRODUCTION) {
+//if (!IS_PRODUCTION) {
   app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
-    credentials: true,
+  origin: IS_PRODUCTION
+    ? "https://salon-calendar-menard-front.onrender.com"
+    : ["http://localhost:5173", "http://localhost:5174"],
+  credentials: true,
   }));
-}
+//}
 
 app.use(express.json());
 
@@ -415,6 +417,7 @@ app.delete('/api/reservations/:id', authenticate, requireStaff, async (req: Auth
 // ─────────────────────────────────────────────
 // 本番環境：フロントエンドの静的ファイルを配信
 // ─────────────────────────────────────────────
+/*/いったんコメントアウト
 if (IS_PRODUCTION) {
   const frontendDist = path.join(__dirname, '../../frontend/dist');
   app.use(express.static(frontendDist));
@@ -424,6 +427,7 @@ if (IS_PRODUCTION) {
     res.sendFile(path.join(frontendDist, 'index.html'));
   });
 }
+/*/
 
 // ─────────────────────────────────────────────
 // サーバー起動
