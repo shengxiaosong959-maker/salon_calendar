@@ -296,14 +296,26 @@ app.post('/api/reservations', authenticate, requireStaff, async (req: AuthReques
     return res.status(400).json({ error: '必須項目が不足しています' });
   }
 
-  const startTs = new Date(`${date}T${startTime}:00`).getTime();
-  const endTs = new Date(`${date}T${endTime}:00`).getTime();
-  //デバック用
-  console.log("startTs", startTs);
-  console.log("startDate", new Date(startTs).toString());
+  const [year, month, day] = date.split('-').map(Number);
+  const [startHour, startMinute] = startTime.split(':').map(Number);
+  const [endHour, endMinute] = endTime.split(':').map(Number);
 
-  console.log("endTs", endTs);
-  console.log("endDate", new Date(endTs).toString());
+
+  const startTs = new Date(
+    year,
+    month - 1,
+    day,
+    startHour,
+    startMinute
+  ).getTime();
+
+  const endTs = new Date(
+    year,
+    month - 1,
+    day,
+    endHour,
+    endMinute
+  ).getTime();
 
   if (isNaN(startTs) || isNaN(endTs) || startTs >= endTs) {
     return res.status(400).json({ error: '日時が正しくありません' });
@@ -347,14 +359,6 @@ app.post('/api/reservations', authenticate, requireStaff, async (req: AuthReques
 app.put('/api/reservations/:id', authenticate, requireStaff, async (req: AuthRequest, res) => {
   const { id } = req.params;
   const { staffName, customerName, plan, date, startTime, endTime, bed, memo } = req.body;
-  //デバック用
-  console.log(req.body);
-
-  console.log({
-    date,
-    startTime,
-    endTime,
-  });
   const shopId = req.user!.shopId;
 
   try {
