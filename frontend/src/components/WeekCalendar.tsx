@@ -74,14 +74,6 @@ export default function WeekCalendar() {
   const monthDisplay = format(displayWeekStart, "M月", { locale: ja });
 
   const getReservationsForDay = (day: Date) => {
-    console.log(
-        "表示用",
-        reservations.map(r => ({
-          start: new Date(Number(r.startTime)).toString(),
-          end: new Date(Number(r.endTime)).toString(),
-        }))
-      );
-
     const dayStart = new Date(day);
     dayStart.setHours(0, 0, 0, 0);
     const dayEnd = new Date(day);
@@ -117,7 +109,7 @@ export default function WeekCalendar() {
           onClick={() => setWeekOffset(weekOffset - 1)}
           className="nav-button"
         >
-          ＜ 先週
+          &lt; 先週
         </button>
         <span className="date-range">
           {format(displayWeekStart, "M月d日", { locale: ja })} ～{" "}
@@ -127,7 +119,7 @@ export default function WeekCalendar() {
           onClick={() => setWeekOffset(weekOffset + 1)}
           className="nav-button"
         >
-          来週 ＞
+          来週 &lt; 
         </button>
       </div>
 
