@@ -298,6 +298,9 @@ app.post('/api/reservations', authenticate, requireStaff, async (req: AuthReques
 
   const startTs = new Date(`${date}T${startTime}:00`).getTime();
   const endTs = new Date(`${date}T${endTime}:00`).getTime();
+  //デバック用
+  console.log(new Date(startTs));
+  console.log(startTs);
 
   if (isNaN(startTs) || isNaN(endTs) || startTs >= endTs) {
     return res.status(400).json({ error: '日時が正しくありません' });
@@ -341,6 +344,14 @@ app.post('/api/reservations', authenticate, requireStaff, async (req: AuthReques
 app.put('/api/reservations/:id', authenticate, requireStaff, async (req: AuthRequest, res) => {
   const { id } = req.params;
   const { staffName, customerName, plan, date, startTime, endTime, bed, memo } = req.body;
+  //デバック用
+  console.log(req.body);
+
+  console.log({
+    date,
+    startTime,
+    endTime,
+  });
   const shopId = req.user!.shopId;
 
   try {
