@@ -74,6 +74,14 @@ export default function WeekCalendar() {
   const monthDisplay = format(displayWeekStart, "M月", { locale: ja });
 
   const getReservationsForDay = (day: Date) => {
+    console.log(
+        "表示用",
+        reservations.map(r => ({
+          start: new Date(Number(r.startTime)).toString(),
+          end: new Date(Number(r.endTime)).toString(),
+        }))
+      );
+
     const dayStart = new Date(day);
     dayStart.setHours(0, 0, 0, 0);
     const dayEnd = new Date(day);
