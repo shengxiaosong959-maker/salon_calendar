@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { EditReservationModal } from './EditReservationModal';
 import '../styles/ReservationModal.css';
+import { useAuth } from '../contexts/AuthContext';
+
 
 interface Reservation {
   id: string;
@@ -47,6 +49,7 @@ export function ReservationModal({
   onClose,
   onReservationAdded,
 }: ReservationModalProps) {
+  const { user } = useAuth();
   const [showForm, setShowForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -115,9 +118,9 @@ export function ReservationModal({
     setErrorMessage(null);
     setSuccessMessage(null);
     setFormData({
-      staffName: '',
+      staffName: user?.name ?? '',          // ← ログインユーザー名を自動入力
       customerName: '',
-      plan: '',
+      plan: 'フェイシャル60分',              // ← デフォルトプランを自動入力
       date: formatDateForInput(selectedDate),
       startTime: '',
       endTime: '',
@@ -132,6 +135,22 @@ export function ReservationModal({
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleStartTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newStartTime = e.target.value;
+    setFormData((prev) => {
+      // 開始時間から2時間後を計算
+      let newEndTime = prev.endTime;
+      if (newStartTime) {
+        const [hours, minutes] = newStartTime.split(':').map(Number);
+        const endHours = hours + 2;
+        if (endHours <= 23) {
+          newEndTime = `${String(endHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+        }
+      }
+      return { ...prev, startTime: newStartTime, endTime: newEndTime };
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -316,7 +335,7 @@ export function ReservationModal({
                       id="startTime"
                       name="startTime"
                       value={formData.startTime}
-                      onChange={handleInputChange}
+                      onChange={handleStartTimeChange}
                     />
                   </div>
                   <div className="form-group half">
