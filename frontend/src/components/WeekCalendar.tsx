@@ -104,24 +104,36 @@ export default function WeekCalendar() {
       <div className="month-display">{monthDisplay}</div>
 
       {/* ナビゲーション */}
-      <div className="navigation">
-        <button
-          onClick={() => setWeekOffset(weekOffset - 1)}
-          className="nav-button"
-        >
-         {"< 先週"}
-        </button>
-        <span className="date-range">
-          {format(displayWeekStart, "M月d日", { locale: ja })} ～{" "}
-          {format(addDays(displayWeekStart, 6), "M月d日", { locale: ja })}
-        </span>
-        <button
-          onClick={() => setWeekOffset(weekOffset + 1)}
-          className="nav-button"
-        >
-           {"来週 >"}
-        </button>
-      </div>
+<div className="navigation">
+  <button
+    onClick={() => setWeekOffset(weekOffset - 4)}
+    className="nav-button"
+  >
+    {"<< 先月"}
+      </button>
+      <button
+        onClick={() => setWeekOffset(weekOffset - 1)}
+        className="nav-button"
+      >
+        {"< 先週"}
+      </button>
+      <span className="date-range">
+        {format(displayWeekStart, "M月d日", { locale: ja })} ～{" "}
+        {format(addDays(displayWeekStart, 6), "M月d日", { locale: ja })}
+      </span>
+      <button
+        onClick={() => setWeekOffset(weekOffset + 1)}
+        className="nav-button"
+      >
+        {"来週 >"}
+      </button>
+      <button
+        onClick={() => setWeekOffset(weekOffset + 4)}
+        className="nav-button"
+      >
+        {"翌月 >>"}
+      </button>
+    </div>
 
       {/* ローディング表示 */}
       {loading && (
